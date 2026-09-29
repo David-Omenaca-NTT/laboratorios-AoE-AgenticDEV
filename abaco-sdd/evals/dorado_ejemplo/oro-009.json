@@ -1,0 +1,18 @@
+{
+  "demanda_id": "oro-009",
+  "proyecto": "PRY-009",
+  "solicitante": "PER-0100",
+  "desde": "2026-07-01",
+  "hasta": "2026-12-31",
+  "prioridad": "baja",
+  "momento_solicitud": "2026-05-10T09:00:00",
+  "posiciones": [
+    {
+      "rol": "desarrollo",
+      "codigo_categoria": "JUN",
+      "skill": "sql",
+      "nivel_minimo": 2,
+      "dedicacion_pct": 100
+    }
+  ]
+}

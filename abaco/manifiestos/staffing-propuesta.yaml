@@ -1,0 +1,109 @@
+# Agent Release Manifest
+# Se valida en el pipeline: sin este fichero, con hash desalineado, con la
+# evaluacion caducada o con un nivel por encima del techo, el merge se bloquea.
+#
+# Los seis ultimos apartados no existen en el manifiesto de un agente que revisa
+# codigo. Existen porque este agente decide sobre personas.
+
+agente: staffing-propuesta
+version: 1.0.0
+propietario_humano: student de la cohorte (nombre y apellidos)
+codigo:
+  ruta: agentes/staffing/agente.py
+  hash_sha256: 9c378819d25136c8bda425ab8a2341f09bc92e8dd6a98b6e032b2ce9b6694d6e
+proposito: >
+  Propone candidatos ordenados para las posiciones de una demanda, con la
+  evidencia de por que cada uno entra y por que cada descartado no entra.
+  NO crea asignaciones.
+
+nivel_autonomia: N2
+techo_permanente: N2
+por_que_ese_techo: >
+  El techo no lo fija la precision del agente, lo fija la reversibilidad del
+  dano. Un agente que revisa codigo puede equivocarse mil veces y el dano es
+  ruido en un PR. Un agente que decide quien trabaja en que puede equivocarse
+  una vez y el dano es la carrera de una persona. Por eso este agente propone y
+  decide siempre un humano, con independencia de sus metricas.
+control_que_lo_fuerza:
+  - el codigo del agente no tiene ninguna ruta que cree o confirme una asignacion
+  - la salida es una propuesta ordenada, no una accion
+  - sin permisos de escritura sobre manifiestos, workflows ni legado
+
+herramientas:
+  - mcp: abaco-contexto
+    operaciones: [listar_specs, obtener_spec, trazabilidad, resultado_tests,
+                  catalogo_vigente, politica_vigente]
+
+datos_accesibles:
+  - persona_id, historico de categoria, skills y nivel
+  - asignaciones y ausencias, para calcular disponibilidad
+  - catalogo de categorias y politica de capacidad vigentes
+datos_prohibidos:
+  - nombre, correo, telefono, foto
+  - pais, oficina, fecha de nacimiento, genero
+  - cualquier dato retributivo: no existe en el sistema por diseno
+
+personas_afectadas: >
+  Toda persona del pool evaluada para una demanda, tanto la propuesta como la
+  descartada. Una propuesta influye en a que proyecto va alguien, y eso influye
+  en su experiencia, su visibilidad y su promocion.
+
+explicabilidad:
+  a_la_persona_propuesta: categoria, skill y nivel considerados, y capacidad libre
+  a_la_persona_no_propuesta: el motivo concreto de descarte, nunca un generico
+  al_resource_manager: candidatos ordenados, descartados agrupados por motivo y
+                       puntuacion desglosada
+  nota: >
+    La salida incluye siempre las alternativas descartadas. Un agente que dice a
+    quien proponer y calla a quien descarto no es explicable.
+
+via_de_contestacion:
+  quien: cualquier persona del pool
+  a_quien: su manager y el dueno funcional de la herramienta
+  plazo: 10 dias laborables desde que conoce la decision
+  que_recibe: el desglose de su evaluacion y el motivo concreto de descarte
+
+veto_humano:
+  quien: el resource manager, sin necesidad de justificar
+  como: >
+    La propuesta no se ejecuta sola en ningun caso, asi que el veto es el estado
+    por defecto y no una accion excepcional.
+
+vigilancia_concentracion:
+  metrica: personas distintas propuestas sobre el pool, y cuota de las cinco mas
+           propuestas
+  frecuencia: mensual
+  umbral_de_revision: cuota de las cinco mas propuestas por encima del 40 por ciento
+  medicion_actual:
+    pool: 180
+    personas_distintas: 20
+    cobertura_del_pool: 0.111
+    cuota_top5: 0.406
+  observacion: >
+    La version final es mas segura y mas util que la v0 y a la vez mas
+    concentrada. No es un fallo del agente: es la consecuencia de optimizar por
+    encaje sin ninguna contrapartida de reparto. Se declara a proposito.
+
+evaluacion:
+  conjunto: evals/dorado_ejemplo
+  casos: 15
+  seguridad_violaciones: 0
+  utilidad_top3: 1.0
+  linea_base_v0:
+    seguridad_violaciones: 43
+    utilidad_top3: 0.154
+  fecha: 2026-08-12
+  caducidad_dias: 30
+
+coste:
+  juez: offline
+  medio_por_ejecucion_usd: 0.0
+  tope_diario_usd: 3.00
+  nota: el nucleo es determinista y no consume tokens
+
+reversion:
+  procedimiento: >
+    Desactivar el workflow del agente. Como no crea asignaciones, no hay nada
+    que revertir en datos.
+  responsable: dueno funcional de la herramienta
+  tiempo_objetivo_min: 5

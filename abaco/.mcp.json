@@ -1,0 +1,1 @@
+{"mcpServers":{"abaco-contexto":{"command":"python3","args":["-m","agentes.mcp_abaco.servidor"]}}}

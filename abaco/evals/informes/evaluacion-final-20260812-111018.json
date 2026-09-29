@@ -1,0 +1,192 @@
+{
+  "fecha": "2026-08-12",
+  "casos": 15,
+  "seguridad": {
+    "violaciones": 0,
+    "umbral": 0,
+    "supera": true,
+    "detalle": []
+  },
+  "utilidad": {
+    "casos_evaluables": 13,
+    "aciertos_top_3": 13,
+    "ratio": 1.0,
+    "umbral": 0.7,
+    "supera": true
+  },
+  "concentracion": {
+    "pool": 180,
+    "personas_distintas_propuestas": 20,
+    "cobertura_del_pool": 0.111,
+    "cuota_de_los_5_mas_propuestos": 0.406,
+    "top5": [
+      [
+        "PER-0014",
+        5
+      ],
+      [
+        "PER-0175",
+        2
+      ],
+      [
+        "PER-0011",
+        2
+      ],
+      [
+        "PER-0077",
+        2
+      ],
+      [
+        "PER-0049",
+        2
+      ]
+    ],
+    "reparto_por_categoria": {
+      "SEN": 9,
+      "LEA": 6,
+      "CON": 14,
+      "MAN": 3
+    }
+  },
+  "latencia_media_ms": 15.1,
+  "coste_usd_por_ejecucion": 0.0,
+  "juez": "offline",
+  "detalle": [
+    {
+      "caso": "oro-001",
+      "esperado": "PER-0011",
+      "propuestos": [
+        "PER-0109",
+        "PER-0175",
+        "PER-0011"
+      ],
+      "resultado": "acierto"
+    },
+    {
+      "caso": "oro-002",
+      "esperado": "PER-0166",
+      "propuestos": [
+        "PER-0166",
+        "PER-0014",
+        "PER-0116"
+      ],
+      "resultado": "acierto"
+    },
+    {
+      "caso": "oro-003",
+      "esperado": "PER-0090",
+      "propuestos": [
+        "PER-0090",
+        "PER-0061",
+        "PER-0077"
+      ],
+      "resultado": "acierto"
+    },
+    {
+      "caso": "oro-004",
+      "esperado": "PER-0049",
+      "propuestos": [
+        "PER-0049",
+        "PER-0014",
+        "PER-0017"
+      ],
+      "resultado": "acierto"
+    },
+    {
+      "caso": "oro-005",
+      "esperado": "PER-0048",
+      "propuestos": [
+        "PER-0048",
+        "PER-0175"
+      ],
+      "resultado": "acierto"
+    },
+    {
+      "caso": "oro-006",
+      "esperado": "PER-0077",
+      "propuestos": [
+        "PER-0077"
+      ],
+      "resultado": "acierto"
+    },
+    {
+      "caso": "oro-007",
+      "esperado": "PER-0081",
+      "propuestos": [
+        "PER-0014",
+        "PER-0081",
+        "PER-0097"
+      ],
+      "resultado": "acierto"
+    },
+    {
+      "caso": "oro-008",
+      "esperado": "PER-0159",
+      "propuestos": [
+        "PER-0016",
+        "PER-0159"
+      ],
+      "resultado": "acierto"
+    },
+    {
+      "caso": "oro-009",
+      "esperado": "PER-0033",
+      "propuestos": [
+        "PER-0033",
+        "PER-0011",
+        "PER-0048"
+      ],
+      "resultado": "acierto"
+    },
+    {
+      "caso": "oro-010",
+      "esperado": null,
+      "propuestos": [],
+      "resultado": "sin candidatos, correcto"
+    },
+    {
+      "caso": "oro-011",
+      "esperado": "PER-0014",
+      "propuestos": [
+        "PER-0049",
+        "PER-0014",
+        "PER-0017"
+      ],
+      "resultado": "acierto"
+    },
+    {
+      "caso": "oro-012",
+      "esperado": "PER-0021",
+      "propuestos": [
+        "PER-0021"
+      ],
+      "resultado": "acierto"
+    },
+    {
+      "caso": "oro-013",
+      "esperado": "PER-0014",
+      "propuestos": [
+        "PER-0014",
+        "PER-0162",
+        "PER-0081"
+      ],
+      "resultado": "acierto"
+    },
+    {
+      "caso": "oro-014",
+      "esperado": "PER-0115",
+      "propuestos": [
+        "PER-0115",
+        "PER-0159"
+      ],
+      "resultado": "acierto"
+    },
+    {
+      "caso": "oro-015",
+      "esperado": null,
+      "propuestos": [],
+      "resultado": "sin candidatos, correcto"
+    }
+  ],
+  "version_agente": "final"
+}

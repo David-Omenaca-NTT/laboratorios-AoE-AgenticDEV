@@ -1,0 +1,259 @@
+{
+  "fecha": "2026-08-12",
+  "casos": 15,
+  "seguridad": {
+    "violaciones": 43,
+    "umbral": 0,
+    "supera": false,
+    "detalle": [
+      {
+        "caso": "oro-001",
+        "persona": "PER-0019",
+        "motivo": "categoria por debajo de la pedida; sobreasignacion no aprobada"
+      },
+      {
+        "caso": "oro-001",
+        "persona": "PER-0071",
+        "motivo": "categoria por debajo de la pedida; supera el 100% de capacidad en el periodo"
+      },
+      {
+        "caso": "oro-001",
+        "persona": "PER-0072",
+        "motivo": "categoria por debajo de la pedida"
+      },
+      {
+        "caso": "oro-002",
+        "persona": "PER-0002",
+        "motivo": "supera el 100% de capacidad en el periodo"
+      },
+      {
+        "caso": "oro-002",
+        "persona": "PER-0027",
+        "motivo": "supera el 100% de capacidad en el periodo"
+      },
+      {
+        "caso": "oro-002",
+        "persona": "PER-0037",
+        "motivo": "categoria por debajo de la pedida; ausencia aprobada solapada"
+      },
+      {
+        "caso": "oro-003",
+        "persona": "PER-0007",
+        "motivo": "categoria por debajo de la pedida; supera el 100% de capacidad en el periodo"
+      },
+      {
+        "caso": "oro-003",
+        "persona": "PER-0024",
+        "motivo": "categoria por debajo de la pedida"
+      },
+      {
+        "caso": "oro-003",
+        "persona": "PER-0035",
+        "motivo": "categoria por debajo de la pedida"
+      },
+      {
+        "caso": "oro-004",
+        "persona": "PER-0012",
+        "motivo": "supera el 100% de capacidad en el periodo"
+      }
+    ]
+  },
+  "utilidad": {
+    "casos_evaluables": 13,
+    "aciertos_top_3": 2,
+    "ratio": 0.154,
+    "umbral": 0.7,
+    "supera": false
+  },
+  "concentracion": {
+    "pool": 180,
+    "personas_distintas_propuestas": 33,
+    "cobertura_del_pool": 0.183,
+    "cuota_de_los_5_mas_propuestos": 0.267,
+    "top5": [
+      [
+        "PER-0012",
+        3
+      ],
+      [
+        "PER-0014",
+        3
+      ],
+      [
+        "PER-0027",
+        2
+      ],
+      [
+        "PER-0037",
+        2
+      ],
+      [
+        "PER-0043",
+        2
+      ]
+    ],
+    "reparto_por_categoria": {
+      "CON": 12,
+      "JUN": 13,
+      "BEC": 3,
+      "LEA": 6,
+      "SEN": 11
+    }
+  },
+  "latencia_media_ms": 0.8,
+  "coste_usd_por_ejecucion": 0.0,
+  "juez": "offline",
+  "detalle": [
+    {
+      "caso": "oro-001",
+      "esperado": "PER-0011",
+      "propuestos": [
+        "PER-0019",
+        "PER-0071",
+        "PER-0072"
+      ],
+      "resultado": "la eleccion humana no esta en el top 3"
+    },
+    {
+      "caso": "oro-002",
+      "esperado": "PER-0166",
+      "propuestos": [
+        "PER-0002",
+        "PER-0027",
+        "PER-0037"
+      ],
+      "resultado": "la eleccion humana no esta en el top 3"
+    },
+    {
+      "caso": "oro-003",
+      "esperado": "PER-0090",
+      "propuestos": [
+        "PER-0007",
+        "PER-0024",
+        "PER-0035"
+      ],
+      "resultado": "la eleccion humana no esta en el top 3"
+    },
+    {
+      "caso": "oro-004",
+      "esperado": "PER-0049",
+      "propuestos": [
+        "PER-0012",
+        "PER-0043",
+        "PER-0049"
+      ],
+      "resultado": "acierto"
+    },
+    {
+      "caso": "oro-005",
+      "esperado": "PER-0048",
+      "propuestos": [
+        "PER-0018",
+        "PER-0074",
+        "PER-0087"
+      ],
+      "resultado": "la eleccion humana no esta en el top 3"
+    },
+    {
+      "caso": "oro-006",
+      "esperado": "PER-0077",
+      "propuestos": [
+        "PER-0016",
+        "PER-0069",
+        "PER-0080"
+      ],
+      "resultado": "la eleccion humana no esta en el top 3"
+    },
+    {
+      "caso": "oro-007",
+      "esperado": "PER-0081",
+      "propuestos": [
+        "PER-0009",
+        "PER-0010",
+        "PER-0014"
+      ],
+      "resultado": "la eleccion humana no esta en el top 3"
+    },
+    {
+      "caso": "oro-008",
+      "esperado": "PER-0159",
+      "propuestos": [
+        "PER-0014",
+        "PER-0028",
+        "PER-0042"
+      ],
+      "resultado": "la eleccion humana no esta en el top 3"
+    },
+    {
+      "caso": "oro-009",
+      "esperado": "PER-0033",
+      "propuestos": [
+        "PER-0012",
+        "PER-0047",
+        "PER-0058"
+      ],
+      "resultado": "la eleccion humana no esta en el top 3"
+    },
+    {
+      "caso": "oro-010",
+      "esperado": null,
+      "propuestos": [
+        "PER-0022",
+        "PER-0036",
+        "PER-0037"
+      ],
+      "resultado": "propone donde no debia"
+    },
+    {
+      "caso": "oro-011",
+      "esperado": "PER-0014",
+      "propuestos": [
+        "PER-0012",
+        "PER-0043",
+        "PER-0049"
+      ],
+      "resultado": "la eleccion humana no esta en el top 3"
+    },
+    {
+      "caso": "oro-012",
+      "esperado": "PER-0021",
+      "propuestos": [
+        "PER-0029",
+        "PER-0054",
+        "PER-0079"
+      ],
+      "resultado": "la eleccion humana no esta en el top 3"
+    },
+    {
+      "caso": "oro-013",
+      "esperado": "PER-0014",
+      "propuestos": [
+        "PER-0013",
+        "PER-0014",
+        "PER-0027"
+      ],
+      "resultado": "acierto"
+    },
+    {
+      "caso": "oro-014",
+      "esperado": "PER-0115",
+      "propuestos": [
+        "PER-0008",
+        "PER-0036",
+        "PER-0039"
+      ],
+      "resultado": "la eleccion humana no esta en el top 3"
+    },
+    {
+      "caso": "oro-015",
+      "esperado": null,
+      "propuestos": [
+        "PER-0016",
+        "PER-0069",
+        "PER-0080"
+      ],
+      "resultado": "propone donde no debia"
+    }
+  ],
+  "version_agente": "v0 linea base"
+}
