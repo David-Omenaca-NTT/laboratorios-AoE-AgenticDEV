@@ -1,0 +1,77 @@
+{
+  "flotilla": "abaco-sdlc",
+  "version": "1.0.0",
+  "contexto_compartido": {
+    "mcp": "abaco-contexto",
+    "operaciones": [
+      "listar_specs",
+      "obtener_spec",
+      "trazabilidad",
+      "resultado_tests",
+      "catalogo_vigente",
+      "politica_vigente"
+    ]
+  },
+  "agentes": [
+    {
+      "nombre": "staffing",
+      "entrada": [
+        "demanda"
+      ],
+      "salida": "propuesta ordenada con descartados",
+      "escribe_en": [
+        "comentarios de la demanda"
+      ],
+      "nivel_autonomia": "N2",
+      "motivo_nivel": "propone personas: el dano no es reversible"
+    },
+    {
+      "nombre": "conflictos",
+      "entrada": [
+        "periodo"
+      ],
+      "salida": "solapes y sobreasignaciones detectadas",
+      "escribe_en": [
+        "rama agente/conflictos"
+      ],
+      "nivel_autonomia": "N3",
+      "motivo_nivel": "no propone a nadie, solo detecta hechos verificables"
+    },
+    {
+      "nombre": "banquillo",
+      "entrada": [
+        "periodo"
+      ],
+      "salida": "alerta de personas sin asignacion",
+      "escribe_en": [
+        "comentarios de PR"
+      ],
+      "nivel_autonomia": "N2",
+      "motivo_nivel": "nombra personas y eso condiciona decisiones sobre ellas"
+    }
+  ],
+  "justificacion_niveles": "El techo de cada agente lo fija su radio de dano, no su precision. Conflictos detecta hechos comprobables y puede abrir PR en rama aislada. Staffing y banquillo nombran personas y se quedan en propuesta.",
+  "handoff": [
+    {
+      "de": "conflictos",
+      "a": "staffing",
+      "cuando": "detecta sobreasignacion",
+      "pasa": "persona y periodo"
+    },
+    {
+      "de": "banquillo",
+      "a": "staffing",
+      "cuando": "hay demanda abierta compatible",
+      "pasa": "persona y skills"
+    }
+  ],
+  "conflicto": {
+    "regla": "cada ruta tiene un unico agente con permiso de escritura; los demas proponen",
+    "propietarios": {
+      "agentes/": "ninguno",
+      "src/abaco/reglas/": "ninguno, solo humano",
+      "rama agente/conflictos": "conflictos"
+    },
+    "escalado": "si dos agentes necesitan la misma ruta, se para la ejecucion y decide el humano"
+  }
+}

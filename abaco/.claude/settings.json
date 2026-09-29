@@ -1,0 +1,48 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -m pytest*)",
+      "Bash(python3 -m abaco_cli*)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Edit(src/abaco/reglas/**)",
+      "Edit(src/abaco/dominio/**)",
+      "Edit(tests/**)",
+      "Edit(specs/**)"
+    ],
+    "deny": [
+      "Edit(manifiestos/**)",
+      "Edit(.github/workflows/**)",
+      "Edit(labs/*/verificar.py)",
+      "Edit(evals/dorado*/**)",
+      "Edit(src/abaco/legado/**)",
+      "Bash(rm -rf*)",
+      "Bash(git push --force*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 herramientas/hook_rutas.py"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 herramientas/hook_formato.py"
+          }
+        ]
+      }
+    ]
+  }
+}

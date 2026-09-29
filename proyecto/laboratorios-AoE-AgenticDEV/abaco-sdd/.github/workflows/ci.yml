@@ -1,0 +1,101 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  LIMITE_LINEAS: 400
+
+jobs:
+  tamano-pr:
+    name: gate de tamano de PR
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: contar lineas del diff
+        run: |
+          LINEAS=$(git diff --numstat origin/${{ github.base_ref }}...HEAD \
+            | awk '{s+=$1+$2} END {print s+0}')
+          echo "diff de $LINEAS lineas (limite $LIMITE_LINEAS)"
+          if [ "$LINEAS" -gt "$LIMITE_LINEAS" ]; then
+            echo "::error::PR de $LINEAS lineas. El limite es $LIMITE_LINEAS."
+            echo "Un PR que no se puede revisar no se puede aprobar. Partelo."
+            exit 1
+          fi
+
+  aceptacion:
+    name: bateria de aceptacion externa
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: pip install -r requirements.txt
+      - run: python3 herramientas/generar_corpus.py
+      - run: python3 -m pytest aceptacion/ -q --cov=src/abaco --cov-report=term-missing --cov-fail-under=60
+
+  trazabilidad:
+    name: especificaciones OpenSpec y mapa de deriva
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: npm install -g @fission-ai/openspec@1.8.0
+      - run: pip install -r requirements.txt
+      - run: openspec validate --all
+      - run: python3 -m herramientas.gates_sdd deriva
+
+  agente:
+    name: agente de staffing: seguridad y utilidad
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: pip install -r requirements.txt
+      - name: evaluar el agente contra el conjunto dorado
+        run: python3 -m agentes.staffing.evaluar
+
+  imagen:
+    name: build imagen OCI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: podman build
+        run: |
+          if command -v podman >/dev/null; then podman build -t abaco:ci .; \
+          else docker build -t abaco:ci .; fi
+
+  despliegue:
+    name: prueba de despliegue en entorno aislado
+    needs: [aceptacion, trazabilidad, imagen]
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: construir y arrancar la imagen
+        run: |
+          docker build -t abaco-sdd:ci .
+          docker run --rm -d --name abaco-sdd-ci -p 8000:8000 abaco-sdd:ci
+      - name: comprobar readiness
+        run: |
+          for intento in $(seq 1 20); do
+            if python3 -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/salud', timeout=2)"; then exit 0; fi
+            sleep 1
+          done
+          docker logs abaco-sdd-ci
+          exit 1
+      - name: recoger evidencia y retirar entorno
+        if: always()
+        run: |
+          docker logs abaco-sdd-ci || true
+          docker stop abaco-sdd-ci || true
