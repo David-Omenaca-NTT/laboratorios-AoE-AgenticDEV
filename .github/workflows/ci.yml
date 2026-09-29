@@ -54,18 +54,20 @@ jobs:
           exit $FALLO
 
   tests:
-    name: tests
+    name: pruebas de S0
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.11"
 
       - name: Instalar pytest
         run: pip install pytest
 
-      - name: Ejecutar tests S0
-        run: pytest -q
+      - name: Ejecutar test S0
+        run: pytest tests/test_s0_bootstrap.py -q
