@@ -1,0 +1,11 @@
+{
+  "version": "POL-2026",
+  "tolerancia_sobreasignacion_pct": 25,
+  "permite_sobreasignacion": true,
+  "dedicaciones_validas": [
+    25,
+    50,
+    100
+  ],
+  "nota": "La tolerancia se alinea con la dedicacion minima: por debajo de 25 ninguna sobreasignacion seria aprobable en la practica."
+}

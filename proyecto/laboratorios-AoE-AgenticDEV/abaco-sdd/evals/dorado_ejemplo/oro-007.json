@@ -1,0 +1,18 @@
+{
+  "demanda_id": "oro-007",
+  "proyecto": "PRY-007",
+  "solicitante": "PER-0100",
+  "desde": "2026-07-01",
+  "hasta": "2026-12-31",
+  "prioridad": "media",
+  "momento_solicitud": "2026-05-08T09:00:00",
+  "posiciones": [
+    {
+      "rol": "desarrollo",
+      "codigo_categoria": "CON",
+      "skill": "react",
+      "nivel_minimo": 3,
+      "dedicacion_pct": 50
+    }
+  ]
+}

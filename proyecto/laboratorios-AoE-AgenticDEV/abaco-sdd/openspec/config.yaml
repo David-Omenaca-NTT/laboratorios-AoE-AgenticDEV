@@ -1,0 +1,45 @@
+schema: spec-driven
+
+context: |
+  Abaco es el nucleo de capacidad, demanda y asignacion de personas a proyectos
+  de un area de consultoria.
+
+  Stack: Python 3.11, FastAPI en la capa de servicio. El dominio y las reglas se
+  ejecutan y se testean sin levantar nada.
+
+  Reglas de dominio que condicionan todo:
+  - Aritmetica decimal obligatoria en cualquier calculo. Nunca coma flotante.
+  - El redondeo se aplica una sola vez y al final.
+  - Toda decision de asignacion registra version de politica, version de
+    catalogo y origen (api, agente, carga o correccion manual).
+  - La categoria de una persona se congela en la fecha de inicio de cada
+    asignacion. Una promocion no reescribe el historico.
+
+  Alcance excluido a proposito: no hay coste, tarifa ni margen. Se retiraron por
+  minimizacion de datos, porque la retribucion es el dato mas sensible del
+  expediente de un empleado.
+
+  De estos numeros salen conversaciones de desempeno sobre personas con nombre y
+  apellidos, y el cuadro de mando mensual de direccion.
+
+rules:
+  proposal:
+    - Declara siempre el impacto aguas abajo, incluido el de comunicacion
+    - Si el cambio mueve un indicador que alguien ya consume, dilo en el impacto
+  specs:
+    - Todo requisito lleva al menos un escenario que describe el caso que NO se cumple
+    - Numeros concretos, nunca adjetivos como razonable o adecuado
+    - Un requisito que no se puede convertir en escenario no es un requisito
+  design:
+    - Toda decision lleva su alternativa descartada y el motivo del descarte
+  tasks:
+    - La ultima tarea de todo cambio es la bateria de aceptacion externa
+
+operations:
+  apply:
+    guidance:
+      - No modifiques nada bajo aceptacion/ bajo ninguna circunstancia
+      - Anade siempre la cabecera de procedencia al codigo generado
+  archive:
+    guidance:
+      - Comprueba que la spec principal quedo coherente antes de dar por cerrado

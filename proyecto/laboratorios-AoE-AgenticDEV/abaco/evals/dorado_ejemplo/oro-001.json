@@ -1,0 +1,18 @@
+{
+  "demanda_id": "oro-001",
+  "proyecto": "PRY-001",
+  "solicitante": "PER-0100",
+  "desde": "2026-07-01",
+  "hasta": "2026-12-31",
+  "prioridad": "alta",
+  "momento_solicitud": "2026-05-02T09:00:00",
+  "posiciones": [
+    {
+      "rol": "desarrollo",
+      "codigo_categoria": "SEN",
+      "skill": "java",
+      "nivel_minimo": 4,
+      "dedicacion_pct": 100
+    }
+  ]
+}

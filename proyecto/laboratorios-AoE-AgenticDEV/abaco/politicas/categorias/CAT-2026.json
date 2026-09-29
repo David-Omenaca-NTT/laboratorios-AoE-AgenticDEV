@@ -1,0 +1,78 @@
+{
+  "version": "CAT-2026",
+  "vigente_desde": "2026-01-01",
+  "categorias": [
+    {
+      "codigo": "BEC",
+      "nombre": "Becario",
+      "orden_seniority": 1,
+      "utilizacion_objetivo": 55,
+      "capacidad_facturable_esperada": 0.6,
+      "vigente_desde": "2026-01-01",
+      "vigente_hasta": null
+    },
+    {
+      "codigo": "JUN",
+      "nombre": "Junior",
+      "orden_seniority": 2,
+      "utilizacion_objetivo": 75,
+      "capacidad_facturable_esperada": 0.8,
+      "vigente_desde": "2026-01-01",
+      "vigente_hasta": null
+    },
+    {
+      "codigo": "CON",
+      "nombre": "Consultor",
+      "orden_seniority": 3,
+      "utilizacion_objetivo": 88,
+      "capacidad_facturable_esperada": 0.9,
+      "vigente_desde": "2026-01-01",
+      "vigente_hasta": null
+    },
+    {
+      "codigo": "SEN",
+      "nombre": "Senior",
+      "orden_seniority": 4,
+      "utilizacion_objetivo": 85,
+      "capacidad_facturable_esperada": 0.9,
+      "vigente_desde": "2026-01-01",
+      "vigente_hasta": null
+    },
+    {
+      "codigo": "LEA",
+      "nombre": "Lead",
+      "orden_seniority": 5,
+      "utilizacion_objetivo": 75,
+      "capacidad_facturable_esperada": 0.8,
+      "vigente_desde": "2026-01-01",
+      "vigente_hasta": null
+    },
+    {
+      "codigo": "PRI",
+      "nombre": "Principal",
+      "orden_seniority": 5,
+      "utilizacion_objetivo": 70,
+      "capacidad_facturable_esperada": 0.75,
+      "vigente_desde": "2026-01-01",
+      "vigente_hasta": null
+    },
+    {
+      "codigo": "MAN",
+      "nombre": "Manager",
+      "orden_seniority": 7,
+      "utilizacion_objetivo": 60,
+      "capacidad_facturable_esperada": 0.6,
+      "vigente_desde": "2026-01-01",
+      "vigente_hasta": null
+    },
+    {
+      "codigo": "DIR",
+      "nombre": "Director",
+      "orden_seniority": 8,
+      "utilizacion_objetivo": 35,
+      "capacidad_facturable_esperada": 0.3,
+      "vigente_desde": "2026-01-01",
+      "vigente_hasta": null
+    }
+  ]
+}

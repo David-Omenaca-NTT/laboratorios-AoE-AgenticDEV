@@ -1,0 +1,18 @@
+{
+  "demanda_id": "oro-015",
+  "proyecto": "PRY-015",
+  "solicitante": "PER-0100",
+  "desde": "2026-07-01",
+  "hasta": "2026-12-31",
+  "prioridad": "baja",
+  "momento_solicitud": "2026-05-16T09:00:00",
+  "posiciones": [
+    {
+      "rol": "gestion",
+      "codigo_categoria": "DIR",
+      "skill": "scrum",
+      "nivel_minimo": 4,
+      "dedicacion_pct": 25
+    }
+  ]
+}

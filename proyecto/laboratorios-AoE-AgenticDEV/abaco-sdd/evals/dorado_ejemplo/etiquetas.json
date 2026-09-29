@@ -1,0 +1,150 @@
+{
+  "oro-001": {
+    "elegido": "PER-0011",
+    "sin_candidatos": false,
+    "restricciones": {
+      "categoria": "SEN",
+      "skill": "java",
+      "nivel": 4
+    },
+    "posicion_real_en_ranking": 3
+  },
+  "oro-002": {
+    "elegido": "PER-0166",
+    "sin_candidatos": false,
+    "restricciones": {
+      "categoria": "CON",
+      "skill": "python",
+      "nivel": 3
+    },
+    "posicion_real_en_ranking": 1
+  },
+  "oro-003": {
+    "elegido": "PER-0090",
+    "sin_candidatos": false,
+    "restricciones": {
+      "categoria": "LEA",
+      "skill": "aws",
+      "nivel": 4
+    },
+    "posicion_real_en_ranking": 1
+  },
+  "oro-004": {
+    "elegido": "PER-0049",
+    "sin_candidatos": false,
+    "restricciones": {
+      "categoria": "JUN",
+      "skill": "testing",
+      "nivel": 2
+    },
+    "posicion_real_en_ranking": 1
+  },
+  "oro-005": {
+    "elegido": "PER-0048",
+    "sin_candidatos": false,
+    "restricciones": {
+      "categoria": "SEN",
+      "skill": "kubernetes",
+      "nivel": 4
+    },
+    "posicion_real_en_ranking": 1
+  },
+  "oro-006": {
+    "elegido": "PER-0077",
+    "sin_candidatos": false,
+    "restricciones": {
+      "categoria": "MAN",
+      "skill": "scrum",
+      "nivel": 3
+    },
+    "posicion_real_en_ranking": 1
+  },
+  "oro-007": {
+    "elegido": "PER-0081",
+    "sin_candidatos": false,
+    "restricciones": {
+      "categoria": "CON",
+      "skill": "react",
+      "nivel": 3
+    },
+    "posicion_real_en_ranking": 2
+  },
+  "oro-008": {
+    "elegido": "PER-0159",
+    "sin_candidatos": false,
+    "restricciones": {
+      "categoria": "SEN",
+      "skill": "azure",
+      "nivel": 4
+    },
+    "posicion_real_en_ranking": 2
+  },
+  "oro-009": {
+    "elegido": "PER-0033",
+    "sin_candidatos": false,
+    "restricciones": {
+      "categoria": "JUN",
+      "skill": "sql",
+      "nivel": 2
+    },
+    "posicion_real_en_ranking": 1
+  },
+  "oro-010": {
+    "elegido": null,
+    "sin_candidatos": true,
+    "restricciones": {
+      "categoria": "SEN",
+      "skill": "mulesoft",
+      "nivel": 5
+    }
+  },
+  "oro-011": {
+    "elegido": "PER-0014",
+    "sin_candidatos": false,
+    "restricciones": {
+      "categoria": "CON",
+      "skill": "testing",
+      "nivel": 3
+    },
+    "posicion_real_en_ranking": 2
+  },
+  "oro-012": {
+    "elegido": "PER-0021",
+    "sin_candidatos": false,
+    "restricciones": {
+      "categoria": "LEA",
+      "skill": "seguridad",
+      "nivel": 4
+    },
+    "posicion_real_en_ranking": 1
+  },
+  "oro-013": {
+    "elegido": "PER-0014",
+    "sin_candidatos": false,
+    "restricciones": {
+      "categoria": "CON",
+      "skill": "terraform",
+      "nivel": 3
+    },
+    "posicion_real_en_ranking": 1
+  },
+  "oro-014": {
+    "elegido": "PER-0115",
+    "sin_candidatos": false,
+    "restricciones": {
+      "categoria": "SEN",
+      "skill": "angular",
+      "nivel": 4
+    },
+    "posicion_real_en_ranking": 1
+  },
+  "oro-015": {
+    "elegido": null,
+    "sin_candidatos": true,
+    "restricciones": {
+      "categoria": "DIR",
+      "skill": "scrum",
+      "nivel": 4
+    }
+  }
+}

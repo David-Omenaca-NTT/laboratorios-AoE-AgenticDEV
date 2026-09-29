@@ -1,0 +1,14 @@
+{
+  "personas": 180,
+  "coincidentes": 115,
+  "desviaciones_justificadas": {
+    "D-01": 0,
+    "D-02": 0,
+    "D-03": 11,
+    "D-04": 54
+  },
+  "desviaciones_sin_justificar": [],
+  "global_legado": "113.09",
+  "global_nuevo": "56.31",
+  "diferencia_puntos": "56.78"
+}

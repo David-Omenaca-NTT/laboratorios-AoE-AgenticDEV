@@ -1,0 +1,48 @@
+name: puertas de la modalidad SDD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  OPENSPEC_TELEMETRY: "0"
+  DO_NOT_TRACK: "1"
+
+jobs:
+  openspec:
+    name: especificaciones validas
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - name: instalar openspec con version fijada
+        run: npm install -g @fission-ai/openspec@1.8.0
+      - name: validar cambios y especificaciones
+        run: openspec validate --all
+
+  puertas:
+    name: procedencia, aceptacion, deriva y densidad
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: pip install -r requirements.txt
+      - name: cuatro puertas
+        run: python3 -m herramientas.gates_sdd todos
+
+  aceptacion:
+    name: bateria de aceptacion externa
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: pip install -r requirements.txt
+      - run: python3 herramientas/generar_corpus.py
+      - name: bateria escrita a mano
+        run: python3 -m pytest aceptacion/ -q
