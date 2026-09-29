@@ -1,39 +1,73 @@
 name: ci
 
 on:
-  push:
-    branches: [main]
   pull_request:
-
-env:
-  LIMITE_LINEAS: 400
 
 jobs:
   tamano-pr:
     name: gate de tamano de PR
-    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+    env:
+      LIMITE_LINEAS: 400
+
     steps:
-      - uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
-      - name: contar lineas del diff
+      - name: Comprobar tamaño del diff
+        env:
+          ADDITIONS: ${{ github.event.pull_request.additions }}
+          DELETIONS: ${{ github.event.pull_request.deletions }}
         run: |
-          LINEAS=$(git diff --numstat origin/${{ github.base_ref }}...HEAD \
-            | awk '{s+=$1+$2} END {print s+0}')
-          echo "diff de $LINEAS lineas (limite $LIMITE_LINEAS)"
-          if [ "$LINEAS" -gt "$LIMITE_LINEAS" ]; then
-            echo "::error::PR de $LINEAS lineas. El limite es $LIMITE_LINEAS."
-            echo "Un PR que no se puede revisar no se puede aprobar. Partelo."
+          TOTAL=$((ADDITIONS + DELETIONS))
+
+          echo "Diff: +$ADDITIONS -$DELETIONS = $TOTAL líneas (límite: $LIMITE_LINEAS)"
+
+          if [ "$TOTAL" -gt "$LIMITE_LINEAS" ]; then
+            echo "::error::El PR supera las $LIMITE_LINEAS líneas ($TOTAL). Divídelo."
             exit 1
           fi
 
-  s0:
-    name: comprobaciones de S0
+  commits:
+    name: conventional commits
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validar mensajes de commit
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          REGEX='^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-z0-9._-]+\))?!?: .+'
+          FALLO=0
+
+          MERGE_BASE=$(git merge-base "$BASE" "$HEAD")
+
+          while IFS= read -r msg; do
+            if ! [[ "$msg" =~ $REGEX ]]; then
+              echo "::error::Commit no válido: '$msg'"
+              FALLO=1
+            fi
+          done < <(git log --no-merges --format=%s "$MERGE_BASE..$HEAD")
+
+          exit $FALLO
+
+  tests:
+    name: pruebas de S0
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - uses: actions/setup-python@v5
-        with: { python-version: '3.11' }
-      - run: pip install -r requirements.txt
-      - name: pytest S0
-        run: python3 -m pytest tests/test_s0_bootstrap.py -q
+        with:
+          python-version: "3.11"
+
+      - name: Instalar pytest
+        run: pip install pytest
+
+      - name: Ejecutar test S0
+        run: pytest tests/test_s0_bootstrap.py -q
