@@ -1,5 +1,5 @@
 # Rutas protegidas. Coherente con la seccion de limites de CLAUDE.md:
-# lo que un agente no puede escribir, un humano tiene que revisarlo.
+# Lo que un agente no puede escribir, un humano tiene que revisarlo.
 
 *                       @lead-programa
 /labs/                  @lead-programa
